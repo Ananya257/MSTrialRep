@@ -171,7 +171,7 @@ namespace SqlOptimizeTask
                 new RegistryKeyEntry("SOFTWARE",
                     new RegistryKeyEntry("ODBC",
                         new RegistryKeyEntry("ODBCINST.INI", new[] {
-                            new RegistryKeyEntry("ODBC Driver 11 for SQL Server", new [] {
+                            new RegistryKeyEntry("ODBC Driver 17 for SQL Server", new [] {
                                 new RegistryValueEntry("UsageCount", 1),
                                 new RegistryValueEntry("Driver", "msodbcsql17.dll"),
                                 new RegistryValueEntry("Setup", "msodbcsql17.dll"),
@@ -183,7 +183,7 @@ namespace SqlOptimizeTask
                                 new RegistryValueEntry("SQLLevel", "1"),
                             }),
                             new RegistryKeyEntry("ODBC Drivers",
-                                new RegistryValueEntry("ODBC Driver 11 for SQL Server", "Installed"))
+                                new RegistryValueEntry("ODBC Driver 17 for SQL Server", "Installed"))
                         })
                     )
                 )
