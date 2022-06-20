@@ -171,10 +171,10 @@ namespace SqlOptimizeTask
                 new RegistryKeyEntry("SOFTWARE",
                     new RegistryKeyEntry("ODBC",
                         new RegistryKeyEntry("ODBCINST.INI", new[] {
-                            new RegistryKeyEntry("ODBC Driver 18 for SQL Server", new [] {
+                            new RegistryKeyEntry("ODBC Driver 11 for SQL Server", new [] {
                                 new RegistryValueEntry("UsageCount", 1),
-                                new RegistryValueEntry("Driver", "msodbcsql18.dll"),
-                                new RegistryValueEntry("Setup", "msodbcsql18.dll"),
+                                new RegistryValueEntry("Driver", "msodbcsql17.dll"),
+                                new RegistryValueEntry("Setup", "msodbcsql17.dll"),
                                 new RegistryValueEntry("APILevel", "2"),
                                 new RegistryValueEntry("ConnectFunctions", "YYY"),
                                 new RegistryValueEntry("CPTimeout", "60"),
@@ -183,7 +183,7 @@ namespace SqlOptimizeTask
                                 new RegistryValueEntry("SQLLevel", "1"),
                             }),
                             new RegistryKeyEntry("ODBC Drivers",
-                                new RegistryValueEntry("ODBC Driver 18 for SQL Server", "Installed"))
+                                new RegistryValueEntry("ODBC Driver 11 for SQL Server", "Installed"))
                         })
                     )
                 )
@@ -282,7 +282,7 @@ namespace SqlOptimizeTask
                 }
                 catch (Exception exception)
                 {
-                    Logger.WriteLine(string.Format("Couldn't rollback msodbcsql18 ODBC registry configuration. {0}", exception));
+                    Logger.WriteLine(string.Format("Couldn't rollback msodbcsql17 ODBC registry configuration. {0}", exception));
                 }
                 try
                 {
@@ -290,7 +290,7 @@ namespace SqlOptimizeTask
                 }
                 catch (Exception exception)
                 {
-                    Logger.WriteLine(string.Format("Couldn't rollback x64 msodbcsql18 ODBC registry configuration. {0}", exception));
+                    Logger.WriteLine(string.Format("Couldn't rollback x64 msodbcsql17 ODBC registry configuration. {0}", exception));
                 }
                 try
                 {

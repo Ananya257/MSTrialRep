@@ -2844,8 +2844,8 @@ namespace Microsoft.SqlServer.Test.Pimod
 
 		private static readonly string[] _nativeClients = new[] {
 			"SQL Server Native Client",
-			"ODBC Driver 18 for SQL Server",
-			"ODBC Driver 18 for SQL Server"
+			"ODBC Driver 11 for SQL Server",
+			"ODBC Driver 11 for SQL Server"
 		};
 
 		private List<OdbcCommand> _allPreparedCommands;
@@ -3167,7 +3167,7 @@ namespace Microsoft.SqlServer.Test.Pimod
 			{
 				//If no Driver is specified, by default use Sql Native Client.
 				//
-				connectionBuilder.Driver = "ODBC Driver 18 for SQL Server";
+				connectionBuilder.Driver = "ODBC Driver 11 for SQL Server";
 			}
 			else
 			{
@@ -3628,11 +3628,11 @@ namespace Microsoft.SqlServer.Test.Pimod
 			//"[Microsoft][SQL Server Native Client 10.0][SQL Server]"
 			//"ERROR [22012] [Microsoft][SQL Server Native Client 10.0][SQL Server]"
 			//"ERROR [42000] [Microsoft][SQL Server Native Client 10.0][SQL Server]"
-			// "[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]"
-			// "ERROR [22012] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]"
-			// "ERROR [42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]"
+			// "[Microsoft][ODBC Driver 11 for SQL Server][SQL Server]"
+			// "ERROR [22012] [Microsoft][ODBC Driver 11 for SQL Server][SQL Server]"
+			// "ERROR [42000] [Microsoft][ODBC Driver 11 for SQL Server][SQL Server]"
 			//
-			Regex odbcHeader = new Regex(@"^(ERROR \[[\d\w]*\])?\s*\[Microsoft\](\[SQL Server Native Client \d+\.\d+\]|\[ODBC Driver 18 for SQL Server\])(\[SQL Server\])?", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
+			Regex odbcHeader = new Regex(@"^(ERROR \[[\d\w]*\])?\s*\[Microsoft\](\[SQL Server Native Client \d+\.\d+\]|\[ODBC Driver 11 for SQL Server\])(\[SQL Server\])?", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
 			return odbcHeader.Replace(message, String.Empty);
 		}
 
