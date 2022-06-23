@@ -1,85 +1,0 @@
-[1mdiff --git a/gitProj/PimodConnection.cs b/gitProj/PimodConnection.cs[m
-[1mindex 7bc9c22..888c8c4 100644[m
-[1m--- a/gitProj/PimodConnection.cs[m
-[1m+++ b/gitProj/PimodConnection.cs[m
-[36m@@ -2844,8 +2844,8 @@[m [mnamespace Microsoft.SqlServer.Test.Pimod[m
- [m
- 		private static readonly string[] _nativeClients = new[] {[m
- 			"SQL Server Native Client",[m
-[31m-			"ODBC Driver 11 for SQL Server",[m
-[31m-			"ODBC Driver 11 for SQL Server"[m
-[32m+[m			[32m"ODBC Driver 17 for SQL Server",[m[41m[m
-[32m+[m			[32m"ODBC Driver 17 for SQL Server"[m[41m[m
- 		};[m
- [m
- 		private List<OdbcCommand> _allPreparedCommands;[m
-[36m@@ -3167,7 +3167,7 @@[m [mnamespace Microsoft.SqlServer.Test.Pimod[m
- 			{[m
- 				//If no Driver is specified, by default use Sql Native Client.[m
- 				//[m
-[31m-				connectionBuilder.Driver = "ODBC Driver 11 for SQL Server";[m
-[32m+[m				[32mconnectionBuilder.Driver = "ODBC Driver 17 for SQL Server";[m[41m[m
- 			}[m
- 			else[m
- 			{[m
-[36m@@ -3628,11 +3628,11 @@[m [mnamespace Microsoft.SqlServer.Test.Pimod[m
- 			//"[Microsoft][SQL Server Native Client 10.0][SQL Server]"[m
- 			//"ERROR [22012] [Microsoft][SQL Server Native Client 10.0][SQL Server]"[m
- 			//"ERROR [42000] [Microsoft][SQL Server Native Client 10.0][SQL Server]"[m
-[31m-			// "[Microsoft][ODBC Driver 11 for SQL Server][SQL Server]"[m
-[31m-			// "ERROR [22012] [Microsoft][ODBC Driver 11 for SQL Server][SQL Server]"[m
-[31m-			// "ERROR [42000] [Microsoft][ODBC Driver 11 for SQL Server][SQL Server]"[m
-[32m+[m			[32m// "[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]"[m[41m[m
-[32m+[m			[32m// "ERROR [22012] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]"[m[41m[m
-[32m+[m			[32m// "ERROR [42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]"[m[41m[m
- 			//[m
-[31m-			Regex odbcHeader = new Regex(@"^(ERROR \[[\d\w]*\])?\s*\[Microsoft\](\[SQL Server Native Client \d+\.\d+\]|\[ODBC Driver 11 for SQL Server\])(\[SQL Server\])?", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);[m
-[32m+[m			[32mRegex odbcHeader = new Regex(@"^(ERROR \[[\d\w]*\])?\s*\[Microsoft\](\[SQL Server Native Client \d+\.\d+\]|\[ODBC Driver 17 for SQL Server\])(\[SQL Server\])?", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);[m[41m[m
- 			return odbcHeader.Replace(message, String.Empty);[m
- 		}[m
- [m
-[1mdiff --git a/gitProj/SQLServer.cs b/gitProj/SQLServer.cs[m
-[1mindex 6714793..2577491 100644[m
-[1m--- a/gitProj/SQLServer.cs[m
-[1m+++ b/gitProj/SQLServer.cs[m
-[36m@@ -171,10 +171,10 @@[m [mnamespace SqlOptimizeTask[m
-                 new RegistryKeyEntry("SOFTWARE",[m
-                     new RegistryKeyEntry("ODBC",[m
-                         new RegistryKeyEntry("ODBCINST.INI", new[] {[m
-[31m-                            new RegistryKeyEntry("ODBC Driver 11 for SQL Server", new [] {[m
-[32m+[m[32m                            new RegistryKeyEntry("ODBC Driver 17 for SQL Server", new [] {[m[41m[m
-                                 new RegistryValueEntry("UsageCount", 1),[m
-[31m-                                new RegistryValueEntry("Driver", "msodbcsql11.dll"),[m
-[31m-                                new RegistryValueEntry("Setup", "msodbcsql11.dll"),[m
-[32m+[m[32m                                new RegistryValueEntry("Driver", "msodbcsql17.dll"),[m[41m[m
-[32m+[m[32m                                new RegistryValueEntry("Setup", "msodbcsql17.dll"),[m[41m[m
-                                 new RegistryValueEntry("APILevel", "2"),[m
-                                 new RegistryValueEntry("ConnectFunctions", "YYY"),[m
-                                 new RegistryValueEntry("CPTimeout", "60"),[m
-[36m@@ -183,7 +183,7 @@[m [mnamespace SqlOptimizeTask[m
-                                 new RegistryValueEntry("SQLLevel", "1"),[m
-                             }),[m
-                             new RegistryKeyEntry("ODBC Drivers",[m
-[31m-                                new RegistryValueEntry("ODBC Driver 11 for SQL Server", "Installed"))[m
-[32m+[m[32m                                new RegistryValueEntry("ODBC Driver 17 for SQL Server", "Installed"))[m[41m[m
-                         })[m
-                     )[m
-                 )[m
-[36m@@ -282,7 +282,7 @@[m [mnamespace SqlOptimizeTask[m
-                 }[m
-                 catch (Exception exception)[m
-                 {[m
-[31m-                    Logger.WriteLine(string.Format("Couldn't rollback msodbcsql11 ODBC registry configuration. {0}", exception));[m
-[32m+[m[32m                    Logger.WriteLine(string.Format("Couldn't rollback msodbcsql17 ODBC registry configuration. {0}", exception));[m[41m[m
-                 }[m
-                 try[m
-                 {[m
-[36m@@ -290,7 +290,7 @@[m [mnamespace SqlOptimizeTask[m
-                 }[m
-                 catch (Exception exception)[m
-                 {[m
-[31m-                    Logger.WriteLine(string.Format("Couldn't rollback x64 msodbcsql11 ODBC registry configuration. {0}", exception));[m
-[32m+[m[32m                    Logger.WriteLine(string.Format("Couldn't rollback x64 msodbcsql17 ODBC registry configuration. {0}", exception));[m[41m[m
-                 }[m
-                 try[m
-                 {[m
